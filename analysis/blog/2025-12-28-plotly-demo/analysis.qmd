@@ -1,0 +1,109 @@
+---
+title: "Interactive Plotly Chart Demo"
+format:
+  html:
+    embed-resources: false
+    self-contained: false
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import json
+from pathlib import Path
+
+# Create output directory
+output_dir = Path("../../../public/experiments/2025-12-28-plotly-demo")
+output_dir.mkdir(parents=True, exist_ok=True)
+```
+
+## Data Loading
+
+```{python}
+# Create sample data for demonstration
+import numpy as np
+
+# Generate time series data
+dates = pd.date_range('2024-01-01', periods=50, freq='D')
+df = pd.DataFrame({
+    'date': dates,
+    'value': np.sin(np.linspace(0, 4*np.pi, 50)) * 10 + 50 + np.random.randn(50) * 5,
+    'category': np.random.choice(['A', 'B', 'C'], 50)
+})
+
+print(f"Data loaded: {len(df)} records")
+print(df.head())
+```
+
+## Analysis
+
+```{python}
+# Create an interactive Plotly chart
+fig = go.Figure()
+
+# Add traces for each category
+for category in df['category'].unique():
+    category_data = df[df['category'] == category]
+    fig.add_trace(go.Scatter(
+        x=category_data['date'],
+        y=category_data['value'],
+        mode='lines+markers',
+        name=category,
+        hovertemplate='<b>%{fullData.name}</b><br>' +
+                      'Date: %{x}<br>' +
+                      'Value: %{y:.2f}<extra></extra>'
+    ))
+
+# Update layout
+fig.update_layout(
+    title='Interactive Time Series Chart',
+    xaxis_title='Date',
+    yaxis_title='Value',
+    hovermode='x unified',
+    template='plotly_white',
+    #height=500,
+    #width=1000,
+    #autosize=True,
+    margin=dict(l=50, r=100, t=50, b=80),  # Extra right margin for legend
+)
+
+# Save as HTML for interactive display
+fig.write_html(str(output_dir / 'chart1.html'), include_plotlyjs='cdn')
+
+# Also save a static PNG version for fallback
+fig.write_image(str(output_dir / 'fig1.png'), width=1000, height=500, scale=2)
+
+print("Interactive chart created successfully!")
+```
+
+## Summary
+
+```{python}
+# Create summary JSON
+summary = {
+    "highlights": [
+        "Interactive Plotly chart demonstrates time series data visualization",
+        "Chart supports zoom, pan, and hover interactions",
+        "Data shows trends across multiple categories"
+    ],
+    "metrics": {
+        "main": [
+            {"label": "Total Records", "value": len(df), "unit": ""},
+            {"label": "Mean Value", "value": round(df['value'].mean(), 2), "unit": ""},
+            {"label": "Max Value", "value": round(df['value'].max(), 2), "unit": ""},
+            {"label": "Min Value", "value": round(df['value'].min(), 2), "unit": ""},
+            {"label": "Categories", "value": df['category'].nunique(), "unit": ""}
+        ]
+    }
+}
+
+with open(output_dir / 'summary.json', 'w') as f:
+    json.dump(summary, f, indent=2)
+
+print("Summary generated successfully!")
+```

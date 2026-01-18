@@ -1,0 +1,32 @@
+---
+title: "{{TITLE}}"
+date: "{{DATE}}"
+summary: "Brief description of the blog post"
+tags: ["experiment"]
+type: "exploratory"
+status: "draft"
+hasQuarto: true
+---
+
+<ExperimentSummary />
+
+## Context
+
+Describe the context and motivation for this experiment.
+
+## Data
+
+Describe the data used in this experiment.
+
+## Analysis
+
+{/* Add charts from Quarto */}
+<ExperimentChart filename="fig1.png" alt="Chart description" caption="Figure 1: Chart caption" />
+
+## Results
+
+Summarize the key findings.
+
+## Conclusion
+
+What did we learn? What are the next steps?

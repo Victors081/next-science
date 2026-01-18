@@ -1,0 +1,36 @@
+{
+  "highlights": [
+    "Interactive Plotly chart demonstrates time series data visualization",
+    "Chart supports zoom, pan, and hover interactions",
+    "Data shows trends across multiple categories"
+  ],
+  "metrics": {
+    "main": [
+      {
+        "label": "Total Records",
+        "value": 50,
+        "unit": ""
+      },
+      {
+        "label": "Mean Value",
+        "value": 50.59,
+        "unit": ""
+      },
+      {
+        "label": "Max Value",
+        "value": 68.36,
+        "unit": ""
+      },
+      {
+        "label": "Min Value",
+        "value": 35.39,
+        "unit": ""
+      },
+      {
+        "label": "Categories",
+        "value": 3,
+        "unit": ""
+      }
+    ]
+  }
+}

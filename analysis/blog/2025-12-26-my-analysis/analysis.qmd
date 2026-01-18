@@ -1,0 +1,78 @@
+---
+title: "My Analysis Title"
+format:
+  html:
+    embed-resources: false
+    self-contained: false
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import json
+from pathlib import Path
+
+# Set plot style
+sns.set_theme(style="whitegrid")
+plt.rcParams['figure.figsize'] = (10, 6)
+
+# Create output directory
+output_dir = Path("../../../public/experiments/2025-12-26-my-analysis")
+output_dir.mkdir(parents=True, exist_ok=True)
+```
+
+## Data Loading
+
+```{python}
+# Load your data here
+# df = pd.read_csv("data.csv")
+# For demo, create sample data
+df = pd.DataFrame({
+    'x': range(10),
+    'y': [i ** 2 for i in range(10)]
+})
+```
+
+## Analysis
+
+```{python}
+# Create a plot
+plt.figure(figsize=(10, 6))
+plt.plot(df['x'], df['y'], marker='o')
+plt.title('Sample Plot')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.tight_layout()
+plt.savefig(output_dir / 'fig1.png', dpi=150, bbox_inches='tight')
+plt.close()
+```
+
+## Summary
+
+```{python}
+# Create summary JSON
+summary = {
+    "highlights": [
+        "First key finding",
+        "Second key finding",
+        "Third key finding"
+    ],
+    "metrics": {
+        "main": [
+            {"label": "Total Records", "value": len(df), "unit": ""},
+            {"label": "Mean Value", "value": round(df['y'].mean(), 2), "unit": ""},
+            {"label": "Max Value", "value": int(df['y'].max()), "unit": ""}
+        ]
+    }
+}
+
+with open(output_dir / 'summary.json', 'w') as f:
+    json.dump(summary, f, indent=2)
+
+print("Summary generated successfully!")
+```

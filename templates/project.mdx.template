@@ -1,0 +1,31 @@
+---
+title: "{{TITLE}}"
+description: "Brief description of the project"
+link: ""
+github: ""
+stack: ["Next.js", "TypeScript"]
+status: "active"
+date: "{{DATE}}"
+---
+
+## Overview
+
+Describe your project here.
+
+## Features
+
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Tech Stack
+
+Describe the technologies used.
+
+## Challenges
+
+What challenges did you face?
+
+## Learnings
+
+What did you learn from this project?

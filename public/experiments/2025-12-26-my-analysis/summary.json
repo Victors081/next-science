@@ -1,0 +1,26 @@
+{
+  "highlights": [
+    "First key finding",
+    "Second key finding",
+    "Third key finding"
+  ],
+  "metrics": {
+    "main": [
+      {
+        "label": "Total Records",
+        "value": 10,
+        "unit": ""
+      },
+      {
+        "label": "Mean Value",
+        "value": 28.5,
+        "unit": ""
+      },
+      {
+        "label": "Max Value",
+        "value": 81,
+        "unit": ""
+      }
+    ]
+  }
+}
