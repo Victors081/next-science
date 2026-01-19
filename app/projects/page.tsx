@@ -25,6 +25,7 @@ export default function ProjectsPage() {
               key={project.slug}
               item={{
                 ...project.metadata,
+                date: project.metadata.date || new Date().toISOString().split('T')[0],
                 summary: project.metadata.description,
                 tags: project.metadata.stack,
               }}
