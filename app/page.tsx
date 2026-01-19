@@ -66,19 +66,22 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentProjects.map((project) => (
-              <ContentCard
-                key={project.slug}
-                item={{
-                  ...project.metadata,
-                  date: project.metadata.date || new Date().toISOString().split('T')[0],
-                  summary: project.metadata.description,
-                  tags: project.metadata.stack,
-                }}
-                href={`/projects/${project.slug}`}
-                type="project"
-              />
-            ))}
+            {recentProjects.map((project) => {
+              const { status, ...metadataWithoutStatus } = project.metadata;
+              return (
+                <ContentCard
+                  key={project.slug}
+                  item={{
+                    ...metadataWithoutStatus,
+                    date: project.metadata.date || new Date().toISOString().split('T')[0],
+                    summary: project.metadata.description,
+                    tags: project.metadata.stack,
+                  }}
+                  href={`/projects/${project.slug}`}
+                  type="project"
+                />
+              );
+            })}
           </div>
         </section>
       )}

@@ -20,19 +20,22 @@ export default function ProjectsPage() {
 
       {projects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ContentCard
-              key={project.slug}
-              item={{
-                ...project.metadata,
-                date: project.metadata.date || new Date().toISOString().split('T')[0],
-                summary: project.metadata.description,
-                tags: project.metadata.stack,
-              }}
-              href={`/projects/${project.slug}`}
-              type="project"
-            />
-          ))}
+          {projects.map((project) => {
+            const { status, ...metadataWithoutStatus } = project.metadata;
+            return (
+              <ContentCard
+                key={project.slug}
+                item={{
+                  ...metadataWithoutStatus,
+                  date: project.metadata.date || new Date().toISOString().split('T')[0],
+                  summary: project.metadata.description,
+                  tags: project.metadata.stack,
+                }}
+                href={`/projects/${project.slug}`}
+                type="project"
+              />
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-16">
