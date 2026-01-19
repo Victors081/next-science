@@ -42,7 +42,7 @@ body {
 
 /* Prose styles for MDX content */
 .prose {
-  max-width: 65ch;
+  /* Removed max-width constraint to allow full container width */
   color: var(--foreground);
 }
 

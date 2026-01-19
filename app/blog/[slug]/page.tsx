@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Separator className="my-8" />
 
       {/* MDX Content */}
-      <div className="prose max-w-none">
+      <div className="prose !max-w-none">
         <MDXRemote source={post.content} components={components} />
       </div>
     </article>
